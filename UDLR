@@ -1,0 +1,33 @@
+N = int(input())
+
+move = list(map(str,input().split()))
+
+loca_1 = 1
+loca_2 = 1
+
+for i in move:
+    if i == "L":
+        if loca_2-1 < 1:
+            loca_2 == 1
+        else:
+            loca_2 -= 1
+
+    elif i =="R":
+        if loca_2 +1 > N:
+            loca_2 == N
+        else:
+            loca_2 += 1
+
+    elif i == "U":
+        if loca_1 -1 < 1:
+            loca_1 == 1
+        else:
+            loca_1 -= 1
+
+    elif i == "D":
+        if loca_1+1>N:
+            loca_1 == N
+        else:
+            loca_1 += 1
+
+print(loca_1,loca_2)
