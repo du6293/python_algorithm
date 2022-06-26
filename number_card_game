@@ -1,0 +1,11 @@
+N,M = map(int,input().split())  # 행, 열
+data = []
+for i in range(N):
+    matrix = list(map(int, input().split()))
+    data.append(matrix)
+
+res = []
+for i in range(len(data)):
+    res.append(min(data[i]))
+
+print(max(res))
