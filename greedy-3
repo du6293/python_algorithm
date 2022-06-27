@@ -1,0 +1,27 @@
+S = input()
+s = list(S)
+
+cnt_0 = 0  # 0덩어리
+cnt_1 = 0  # 1덩어리
+
+
+
+if s[0] == '0':
+    cnt_0 += 1
+elif s[0] == '1':
+    cnt_1 += 1
+
+
+for i in range(len(s)-1):
+    if s[i] == '0':
+        if s[i+1] == '1':  # 달라지는 지점
+            cnt_1 += 1
+            
+        
+    elif s[i] == '1':
+        if s[i+1] == '0':  # 달라지는 지점
+            cnt_0 += 1
+            
+        
+print(min(cnt_0,cnt_1))    
+
