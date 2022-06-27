@@ -1,0 +1,14 @@
+def solution(clothes):
+    hash = {}
+    result = 1
+    for element in clothes:
+        key = element[1]
+        value = element[0]
+        if key in hash:
+            hash[key].append(value)
+        else:
+            hash[key] = [value]
+
+    for key in hash.keys():
+        result = result * (len(hash[key]) + 1)
+    return result -1
