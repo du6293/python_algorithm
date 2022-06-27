@@ -1,0 +1,13 @@
+N = int(input())
+people = list(map(int,input().split()))
+
+people.sort()
+
+cnt = 0  # team 
+count = 0 # people
+for i in people:
+    count += 1
+    if count >= i:
+        cnt += 1
+        count = 0
+print(cnt)
