@@ -1,0 +1,17 @@
+N = list(input())
+n = []
+for i in N:
+    a = int(i)
+    n.append(a)
+k = len(n)
+left = []
+
+#k = 4, k // 2 = 2
+for i in range(k//2):
+    left.append(n.pop(0))
+
+
+if sum(left) == sum(n):
+    print("LUCKY")
+else:
+    print("READY")
