@@ -1,0 +1,17 @@
+
+
+def solution(phone_book):
+    
+    cnt = 0
+    phone_book.sort()
+    for i in range(len(phone_book)-1):
+        
+            if phone_book[i] == phone_book[i+1][0:len(phone_book[i])]:
+                cnt += 1
+            else:
+                cnt += 0
+
+    if cnt > 0:
+        return False
+    else:
+        return True
