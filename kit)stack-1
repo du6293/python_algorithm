@@ -1,0 +1,20 @@
+def solution(progresses, speeds):
+    work = []
+    answer = []
+    
+    for i in range(len(progresses)):
+        a = ((100 - progresses[i]) // speeds[i]) # 몫
+        if ((100 - progresses[i]) % speeds[i]) != 0: # 나머지가 0이 아닌 경우
+            work.append(a+1)
+        else:  # 나머지가 0인 경우
+            work.append(a)
+            
+    index = 0 
+    for i in range(len(work)):
+        if work[index] < work[i]:
+            answer.append(i-index)
+            index = i
+    answer.append(len(work) - index)
+    
+
+    return answer
