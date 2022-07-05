@@ -1,0 +1,33 @@
+def last(sequence):
+    a = sequence.pop(0)
+    sequence.append(a)
+    return sequence
+
+def solution(priorities, location):
+    
+
+    res = []
+
+    for i in range(len(priorities)):
+        order = [] 
+        order.append(priorities[i])
+        order.append(i+1)
+        res.append(order)
+    # print(res)
+
+    final = []
+    k = max(priorities)
+    while len(res) > 0:
+        if res[0][0] == k:
+            a = res[0][1]-1
+            final.append(res.pop(0))
+            priorities[a]=0
+            k=max(priorities)
+        else:
+            last(res)
+    # print(final)
+
+    for i in range(len(final)):
+        if final[i][1] - 1 == location:
+            s = i +1
+    return s
