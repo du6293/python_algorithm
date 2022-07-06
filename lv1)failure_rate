@@ -1,0 +1,51 @@
+# 방법 1
+
+def solution(N, stages):
+    answer = []
+
+    stages.sort()
+
+    counting = []
+    for i in range(1,N+1):
+        cnt = 0
+        for j in range(len(stages)):
+            if i == stages[j]:
+                cnt += 1
+        counting.append(cnt)
+
+    fail = []
+    a = 0
+    for i in range(N):
+        if len(stages) - a > 0:
+            f = counting[i] / (len(stages) - a)
+            a += counting[i]
+        elif len(stages)-a == 0:
+            f= 0
+        fail.append([f,i+1])
+
+    fail = sorted(fail, key = lambda x: x[0],reverse = True)
+    print(fail)
+    answer = [i[1] for i in fail]
+
+    return answer
+    
+    
+    
+    
+    
+    # 방법 2 >> 같은 로직인데 표현이 더 간단
+    def solution(N,stages):
+    answer = []
+    length = len(stages)
+
+    for i in range(1,N+1):
+        count = stages.count(i)
+        if length == 0:
+            fail = 0
+        else:
+            fail = count / length
+        length -= count
+        answer.append((fail,i))
+    answer = sorted(answer, key = lambda x:x[0], reverse = True)
+    answer = [i[1] for i in answer]
+    return answer
