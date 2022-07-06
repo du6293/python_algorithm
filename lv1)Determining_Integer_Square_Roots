@@ -1,0 +1,12 @@
+
+import math
+def solution(n):
+
+    a = math.sqrt(n)
+    if a == int(a):
+    #정수제곱근인지 판별하기 위해
+    #또는 if a % 1 ==0:도 가능하다
+        answer = (a+1) * (a+1)
+    else:
+        answer = -1
+    return answer
