@@ -1,0 +1,25 @@
+from itertools import combinations
+
+#소수 판별
+def think(n):
+    for i in range(2,n):
+        if n % i == 0:
+            return False
+    return True
+
+
+def solution(nums):
+    combi = list(combinations(nums,3))
+    unique = []
+    for i in range(len(combi)):
+        k = sum(combi[i])
+        unique.append(k)
+
+    result = 0
+    for i in range(len(unique)):
+        if think(unique[i]) == True:
+            result += 1
+        else:
+            result += 0
+
+    return result
