@@ -1,0 +1,11 @@
+##from itertools improt combinations로 풀면 시간초과가 남 >> 무조건 set을 이용해 풀기
+
+def solution(nums):
+    
+    answer = 0
+    length = len(set(nums)) # 중복된 것들을 제거한 후의 길이
+    
+    if len(nums) // 2 > length:  # 더 길이가 짧은 것 출력
+        return length
+    else:
+        return len(nums) // 2
