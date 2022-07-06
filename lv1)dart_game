@@ -1,0 +1,114 @@
+## 내가 푼 방법 >> 시간 매우 오래 걸리고 경우의 수가 너무 
+
+def solution(dartResult):
+    dartResult = dartResult.replace('10','x')
+
+    dr = list(dartResult)
+
+    bonus = ['S','D','T']
+    option = ['*','#']
+
+
+    dart = []  # 숫자인 인덱스를 담을 리스트
+    for i in range(len(dr)):
+
+        if dr[i].isnumeric() :
+            dr[i] = int(dr[i])
+            dart.append(i)
+        elif dr[i] == 'x':
+            dart.append(i)
+
+
+
+    A = dr[:dart[1]]
+    B = dr[dart[1]:dart[2]]
+    C = dr[dart[2]:]
+
+    result = []
+    result.append(A)
+    result.append(B)
+    result.append(C)
+
+    #-----------------------------
+
+    for i in range(len(result)):
+        if str(result[i][0]).isalpha():
+            result[i][0] = 10
+
+
+    #--------------------------------
+
+
+
+    def Bonus(sequence):
+        if sequence[1] == 'S':#1제곱
+            s = sequence[0]
+
+        elif sequence[1] == 'D':#2제곱
+            s = sequence[0] * sequence[0]
+
+        elif sequence[1] == 'T':#3제곱
+            s = sequence[0] * sequence[0] * sequence[0]
+
+        return s
+
+
+
+    a=Bonus(result[0])
+    b=Bonus(result[1])
+    c=Bonus(result[2])
+    for i in range(len(result)):
+        if len(result[i]) == 3 and result[i][-1] == '*':
+            if i == 0:
+                a *= 2
+            elif i == 1:
+                a *= 2
+                b *= 2
+            elif i == 2:
+                b *= 2
+                c *= 2
+        if len(result[i]) == 3 and result[i][-1] == '#':
+            if i == 0:
+                a *= -1
+            elif i == 1:
+                b *=-1
+            elif i == 2:
+                c *=-1
+        if len(result[i]) == 2 :
+            if i == 0:
+                a = Bonus(result[0])
+            elif i == 1:
+                b = Bonus(result[1])
+            elif i == 2:
+                c = Bonus(result[2])
+
+    answer = a+b+c
+    return answer
+    
+    
+    
+    
+    ## 다른 풀이
+    def solution(dartResult):
+    point = []
+    answer = []
+    dartResult = dartResult.replace('10','k')
+    point = ['10' if i == 'k' else i for i in dartResult]
+    print(point)
+
+    i = -1
+    sdt = ['S', 'D', 'T']
+    for j in point:
+        if j in sdt :
+            answer[i] = answer[i] ** (sdt.index(j)+1)
+        elif j == '*':
+            answer[i] = answer[i] * 2
+            if i != 0 :
+                answer[i - 1] = answer[i - 1] * 2
+        elif j == '#':
+            answer[i] = answer[i] * (-1)
+        else:
+            answer.append(int(j))
+            i += 1
+    return sum(answer)
+    
