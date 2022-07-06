@@ -1,5 +1,7 @@
 ##from itertools improt combinations로 풀면 시간초과가 남 >> 무조건 set을 이용해 풀기
 
+
+# 방법 1
 def solution(nums):
     
     answer = 0
@@ -9,3 +11,11 @@ def solution(nums):
         return length
     else:
         return len(nums) // 2
+        
+        
+        
+        
+        
+# 방법 2
+    def solution(ls):
+return min(len(ls)/2, len(set(ls)))
