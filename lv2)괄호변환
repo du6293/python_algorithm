@@ -1,0 +1,70 @@
+def solution(p):
+    answer = ''
+    if des(p):
+        return p
+    else:
+        answer = rec(p)
+    return answer
+
+##u,v로분리하는 함수
+def spl(sentence):
+    cnt = 0  # (
+    bnt = 0  # )
+    u = ''
+    v = ''
+    for i in range(len(sentence)):
+        if sentence[i] == '(':
+            cnt += 1
+            if cnt == bnt:
+                u = sentence[:i+1]
+                v = sentence[i+1:]
+                break
+        else:
+            bnt += 1
+            if cnt == bnt:
+                u = sentence[:i+1]
+                v = sentence[i+1:]
+                break
+    return u,v
+
+
+
+#올바른 문자 판별함수
+def des(sentence):
+    stack = []
+    for i in range(len(sentence)):
+        if sentence[i] == '(':
+            stack.append('(')
+        else:
+            if stack.count('(') == 0:
+                stack.append(')')
+            else:
+                stack.pop(-1)
+    if len(stack) == 0:
+        return True
+    else:
+        return False
+
+
+##
+def rec(p):
+    result = ''
+    if not len(p) : return ''
+
+
+    u,v = spl(p)
+
+    if des(u):
+        result = u + rec(v)
+    else:
+        cnt = '('
+        cnt += rec(v)
+        cnt += ')'
+        u = u[1:-1]
+        for i in u:
+            if i == '(':
+                cnt += ')'
+            else:
+                cnt += '('
+        result += cnt
+    return result
