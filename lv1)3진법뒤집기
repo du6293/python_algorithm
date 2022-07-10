@@ -1,0 +1,14 @@
+def solution(n):
+
+    r = ''
+    while n>= 1:
+        a = n % 3
+        r += str(a)
+        n = n // 3
+
+
+    r = r[::-1]
+    answer = 0
+    for i in range(len(r)):
+        answer += int(r[i]) * (3 ** i)
+    return answer
