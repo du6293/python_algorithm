@@ -1,10 +1,10 @@
-ㅂ# 방법1
+# 방법1
 def solution(str1, str2):
     set1 = [str1[i:i+2].lower() for i in range(len(str1) - 1) if str1[i:i+2].lower().isalpha()]
     set2 = [str2[i:i+2].lower() for i in range(len(str2) - 1) if str2[i:i+2].lower().isalpha()]
 
-    uu = sum([min(set1.count(u), set2.count(u)) for u in list(set(set1) & set(set2))])
-    nn = sum([max(set1.count(n), set2.count(n)) for n in list(set(set1) | set(set2))])
+    uu = sum([min(set1.count(u), set2.count(u)) for u in list(set(set1) & set(set2))])  #교집합
+    nn = sum([max(set1.count(n), set2.count(n)) for n in list(set(set1) | set(set2))])  #합집합
 
     if nn == 0 and uu == 0:
         return 65536
