@@ -1,0 +1,19 @@
+def pair(n):
+    p = []
+    for i in range(n,0,-1):
+        s = []
+        if n % i == 0:
+            if i >= (n//i):
+                s.append(i)
+                s.append(n // i)
+                p.append(s)
+    return p
+
+def solution(brown, yellow):
+    y = pair(yellow)
+    answer = []
+    for i in range(len(y)):
+        if (y[i][0]+2) * 2 + y[i][1] * 2 == brown :
+            answer.append(y[i][0]+2)
+            answer.append(y[i][1]+2)
+    return answer
