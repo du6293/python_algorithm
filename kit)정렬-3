@@ -1,0 +1,23 @@
+def solution(citations):
+    citation = sorted(citations)
+    h = 0
+
+    answer = []
+    while h <= max(citation):
+
+        a = 0  # 이상인 것
+        b = 0  # 이하인 것
+        for i in citation:
+            if i >= h:
+                a += 1
+            elif i <= h:
+                b += 1
+
+        if a >= h and b <= h:
+            answer.append(h)
+            h += 1
+        
+        elif a < h and b <= h:
+            h += 0 
+            break
+    return (max(answer))
