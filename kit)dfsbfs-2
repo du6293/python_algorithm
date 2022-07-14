@@ -1,0 +1,17 @@
+def DFS(n, computers, num, visited):
+    visited[num] = True
+    for i in range(n):
+        if num != i and computers[num][i] == 1:
+            if visited[i] == False:
+                DFS(n,computers, i, visited)
+
+def solution(n, computers):
+    answer = 0
+
+    network = 0
+    visited = [False] * n
+    for num in range(n):
+        if visited[num] == False:
+            DFS(n,computers, num, visited)
+            network += 1
+    return network
