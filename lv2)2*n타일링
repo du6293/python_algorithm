@@ -1,0 +1,11 @@
+#dp문제
+
+
+def solution(n):
+    arr = [0] * (n+1)
+    arr[1] = 1
+    arr[2] = 2
+    for i in range(3,n+1):
+        arr[i] = (arr[i-1] + arr[i-2])% 1000000007  #리스트에 넣기 전 나머지 연산을 해준 후 넣어주어야 시간초과가 안남
+    answer = arr[-1] 
+    return answer
