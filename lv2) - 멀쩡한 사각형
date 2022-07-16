@@ -1,0 +1,28 @@
+from collections import deque
+
+def solution(s):
+    s = deque(s)
+    stack = deque()
+    stack.append(s.popleft())
+
+    while len(s)>=0 :
+        if len(stack) > 0 and len(s) > 0:
+            if stack[-1]  != s[0]:
+                stack.append(s.popleft())
+
+            elif stack[-1] == s[0]:
+                stack.pop()
+                s.popleft()
+
+        elif len(stack) == 0 and len(s) > 0:
+            stack.append(s.popleft())
+
+        elif len(s) == 0:
+            break  
+
+    if len(s) > 0 or len(stack)>0:
+        answer = 0
+    elif len(s) == 0 and len(stack) == 0:
+        answer = 1
+
+    return answer
