@@ -1,0 +1,33 @@
+## 잘못 푼 방법
+
+def solution(land):
+    
+    stack  = [[max(land[0]),land[0].index(max(land[0]))]]  # 점수값,열
+
+
+    for i in range(1,len(land)):
+        k = max(land[i])  #점수값
+        p = land[i].index(k)  #열
+        if p == stack[-1][-1]:
+            land[i][p] = -1
+            stack.append([max(land[i]),land[i].index(max(land[i]))])
+        else:
+            stack.append([k,p])
+
+    answer = 0
+    for i in range(len(stack)):
+        answer += stack[i][0]
+
+    return answer
+    
+    
+  ###정답풀이  >> 각 행을 독립적으로 생각하면 문제가 안풀림. 이전 행에서 두번째로 큰 열의 점수값을 다음 행에 있는 값들에 모두 더해 최댓값을 구해나감
+                  그러다 보면 누적되어 맨 마지막 행에 있는 값들 중 최댓값만 구하면 
+                                                          
+  def solution(land):
+
+    for i in range(1,len(land)):
+        for j in range(len(land[0])):
+            land[i][j] += max(land[i-1][:j] + land[i-1][j+1:])
+
+    return max(land[len(land)-1])
