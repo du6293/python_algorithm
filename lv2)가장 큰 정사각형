@@ -1,0 +1,17 @@
+#https://velog.io/@djagmlrhks3/Algorithm-Programmers-%EA%B0%80%EC%9E%A5-%ED%81%B0-%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95-%EC%B0%BE%EA%B8%B0-by-Python
+
+
+def solution(board):
+    for row in board:  # 행단위로 탐색했을 때 단 하나의 1이라도 나오면 정답의 최소값은 1
+        if sum(row)>0:
+            answer = 1
+            break
+    else:  # for 문이 break로 종료되지 않을 때 수행
+        return 0  # 모든 원소가 0이면 0을 return
+    for i in range(1, len(board)):  # 행
+        for j in range(1,len(board[0])):  # 열
+            if board[i-1][j-1] > 0 and board[i-1][j] > 0 and board[i][j-1] > 0and board[i][j] > 0 :
+                board[i][j] = min(board[i-1][j-1],board[i-1][j],board[i][j-1]) + 1
+                answer = max(answer,board[i][j])
+    
+    return answer ** 2
