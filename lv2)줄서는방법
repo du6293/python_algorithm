@@ -1,0 +1,14 @@
+#https://recordofwonseok.tistory.com/73
+#문제가 이해가 잘 안감
+#permutations로 풀면 시간 초과
+
+import math
+def solution(n, k):
+    Nums = list(range(1, n+1))
+    Answer = []
+    while n != 0:
+        temp = math.factorial(n-1)
+        Index, k = (k-1)//temp, k%temp
+        Answer.append(Nums.pop(Index))
+        n -= 1
+    return Answer
