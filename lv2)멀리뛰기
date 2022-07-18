@@ -1,0 +1,42 @@
+## 내 풀이 >> 오버플로우로 실패
+
+import math
+def solution(n):
+    answer = 0
+    t = [i for i in range(n//2+1)]
+    o = [n-(2*i) for i in range(n//2+1)]
+
+    order = []
+    for i in range(len(t)):
+        a = '1' * o[i] + '2' * t[i]
+        order.append(a)
+
+
+    result = []
+    for i in range(len(order)):
+        b = math.factorial(len(order[i])) /math.factorial(t[i])/math.factorial(o[i])
+        result.append(int(b))
+
+    answer = sum(result) %1234567
+    
+    return answer
+    
+    ## dp문제 >> lv2에 비슷한 알고리즘인 문제 2개 더 본 것 같음
+    
+    def solution(n):
+    answer = 0
+
+    if n >= 2:
+        route = [0] * (n)
+        route[0] = 1
+        route[1] = 2
+
+
+        for i in range(2,n):
+            route[i] = (route[i-2] + route[i-1] )% 1234567
+
+        answer = route[n-1]
+
+    elif n == 1 :
+        answer = 1 % 1234567
+    return answer
