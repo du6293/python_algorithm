@@ -1,0 +1,24 @@
+#최대공약수
+
+def gcd(x,y):
+    while y :
+        x,y = y,x%y
+    return x
+    
+#최소공배수
+def lcm(x,y):
+    return x*y // gcd(x,y)
+
+
+def solution(arr):
+    if len(arr) == 1:
+        answer = arr[0]
+    else:
+        result = []
+        k = lcm(arr[0],arr[1])
+        for i in range(2,len(arr)):
+            a = lcm(k,arr[i])
+            result.append(a)
+            k = a
+        answer = result[-1]
+    return answer
