@@ -1,0 +1,22 @@
+
+## 방법1   > s.title() 사용
+
+def Jaden_Case(s):
+    # 함수를 완성하세요
+    return s.title()
+    
+    
+    
+  #방법 2   > s.capitalize()사용
+  
+  def solution(s):
+    line = list(s.split(' '))
+
+    for i in range(len(line)):
+        if line[0].isnumeric():
+            line[i] = line[1:].lower()
+        else:
+            line[i] = line[i].capitalize()
+    answer = ' '.join(line)
+
+    return answer
