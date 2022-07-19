@@ -1,0 +1,12 @@
+##리스트.split(' ')사용
+def solution(s):
+    s = list(map(int,s.split(' ')))
+    answer = str(min(s)) + ' ' + str(max(s))
+
+    return answer
+    
+    
+    
+## 가장자리 왼쪽, 오른쪽, 문자열 내부 공백 한꺼번에 지우기    
+# import re
+s = re.sub(r'\s',"",s)
