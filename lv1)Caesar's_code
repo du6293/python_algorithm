@@ -6,3 +6,23 @@ def solution(s, n):
         elif s[i].islower():
             s[i] = chr((ord(s[i]) - ord('a') + n) % 26 + ord('a'))
     return "".join(s)
+
+## 내 풀이
+def solution(s, n):
+    a = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    b = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    
+    s = list(s)
+    w = ''
+    for i in range(len(s)):
+        if s[i].islower():
+            for j in range(len(a)):
+                if s[i] == a[j]:
+                    w += a[(j+n) % len(b)]
+        elif s[i].isupper():
+            for j in range(len(b)):
+                if s[i] == b[j]:
+                    w += b[(j+n) % len(b)]
+        elif s[i] == ' ':
+            w += ' '
+    return w
