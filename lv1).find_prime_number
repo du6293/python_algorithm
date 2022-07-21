@@ -1,6 +1,16 @@
 #일반적인 소수 판별 알고리즘이 아닌 에라토스 테네스 체 이용
 
 
+# 소수 판별 알고리즘 
+def prime(n):
+    for i in range(2,n):
+        b = 0
+        if n % i == 0:  # 소수가 있다
+            b = 1
+            break
+    return b
+    
+
 def solution(n):
     num = set(range(2,n+1))  # 2부터 n+1까지의 집합
 
