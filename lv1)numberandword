@@ -1,20 +1,23 @@
-a = len(s) 
-alpha = {'zero':'0', 'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
+def solution(s):
+    answer = 0
+    alpha = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9','zero':'0'}
+    res = ''  #숫자만 모음
+    cnt = ''  #글자로 포함된 경우
+    a = len(s)
+    for i in range(a):
+        if s[i].isdigit():
+            res += s[i]
+        elif s[i].isalpha():
+            cnt+=s[i]
 
-#방법1
-res = ''  #숫자만 모음
-# cnt = ''  #글자로 포함된 경우
- 
-# for i in range(a):
-#     if s[i].isdigit():
-#         res += s[i]
-#     elif s[i].isalpha():
-#         cnt+=s[i]
-    
-#     if cnt in alpha.keys():
-#         res += alpha[cnt] 
-#         cnt = ''
-# print(res)
+        if cnt in alpha.keys():
+            res += alpha[cnt] 
+            cnt = ''
+    answer = res
+    return int(answer)
+
+
+
 
 
 #방법 2
