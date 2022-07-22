@@ -21,7 +21,8 @@ def solution(s):
 
 
 #방법 2
-res = s
-for key, value in alpha.items():
-    res = res.replace(key, value)
-print((res))
+def solution(s):
+    res = s
+    for key, value in alpha.items():
+        res = res.replace(key,value)
+   return int(res)
