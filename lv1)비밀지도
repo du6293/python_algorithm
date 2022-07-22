@@ -14,3 +14,25 @@ def solution(n, arr1, arr2):
     #  val = "222".ljust(15, "a")   >>  222aaaaaaaaaaaa
     #  val = "123".zfill(5)     >> 00123
     
+
+##내 풀이
+def solution(n, arr1, arr2):
+    answer = []
+    ar1 = []
+    ar2 = []
+    for i in range(len(arr1)):
+        a1 = list(str(bin(arr1[i]))[2:].rjust(n,'0'))
+        ar1.append(a1)
+        a2 = list(str(bin(arr2[i]))[2:].rjust(n,'0'))
+        ar2.append(a2)
+
+    for i in range(n):
+        result = []
+        for j in range(n):
+            if ar1[i][j] == '1' or ar2[i][j] == '1':
+                result.append('#') 
+            else:
+                result.append(' ')
+        answer.append(''.join(result))
+    
+    return answer
