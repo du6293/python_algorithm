@@ -50,3 +50,40 @@ def solution(numbers, hand):
                     right_hand = i
 
     return answer
+    
+ ## 내가 푼 풀이
+ def solution(numbers, hand):
+    answer = ''
+    left = [1,4,7,'*']
+    l = [3,0]
+    right = [3,6,9,'#']
+    r = [3,2]
+    mid = [2,5,8,0]
+    
+    
+    for i in range(len(numbers)):
+        for j in range(len(left)):
+            if numbers[i] == left[j]:
+                answer +='L'
+                l = [j,0]
+        for k in range(len(right)):
+            if numbers[i] == right[k]:
+                answer += 'R'
+                r = [k,2]
+        for h in range(len(mid)):
+            if numbers[i] == mid[h]:
+                if (abs(h-l[0]) + abs(1-l[1])) < (abs(h-r[0]) + abs(1-r[1])):
+                    answer += 'L'
+                    l = [h,1]
+                elif (abs(h-l[0]) + abs(1-l[1])) > (abs(h-r[0]) + abs(1-r[1])):
+                    answer += 'R'
+                    r = [h,1]
+                elif  (abs(h-l[0]) + abs(1-l[1])) == (abs(h-r[0]) + abs(1-r[1])) :               
+                    if hand == 'left':
+                        answer += 'L'
+                        l = [h,1]
+                    elif hand == 'right':
+                        answer += 'R'
+                        r = [h,1]
+            
+    return answer
