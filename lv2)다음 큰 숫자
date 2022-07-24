@@ -1,0 +1,12 @@
+def solution(n):
+    answer = 0
+    i = n+1
+    while True:
+        m = list(bin(n)[2:]).count('1')
+        k = list(bin(i)[2:]).count('1')
+        if m == k:
+            break
+        else:
+             i += 1
+            
+    return i
