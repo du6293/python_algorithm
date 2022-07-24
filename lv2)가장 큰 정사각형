@@ -15,3 +15,25 @@ def solution(board):
                 answer = max(answer,board[i][j])
     
     return answer ** 2
+
+## 내가 푼 것
+def solution(board):
+    
+    if len(board) >= 2 and len(board[0]) >= 2:
+        for i in range(1,len(board)):
+            for j in range(1,len(board[0])):
+                if board[i-1][j-1] > 0 and board[i-1][j] > 0 and board[i][j-1] and board[i][j] > 0 :
+                    board[i][j] = min(board[i-1][j-1], board[i-1][j],board[i][j-1]) + 1
+        
+        m = []
+        for i in range(len(board)):
+            
+            k = max(board[i])
+            m.append(k)
+        answer = max(m)
+    else:
+        for i in range(len(board)):
+            if board[i]==1 or [1]:
+                answer = 1
+            
+    return answer ** 2
