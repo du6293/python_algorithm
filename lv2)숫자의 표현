@@ -47,7 +47,7 @@ def solution(n):
     else:
         cnt = 0
         for i in range(len(number)):
-            for j in range(len(number)-(i-1)):
+            for j in range(len(number)-(i-1)):  # 맨 마지막 원소 15가 15번 계산되므로 15는 1번만 계산되게 함
                 if sum(number[i:i+j]) == n:
                     cnt += 1
                 elif sum(number[i:i+j]) > n:
