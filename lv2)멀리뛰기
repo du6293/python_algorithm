@@ -40,3 +40,24 @@ def solution(n):
     elif n == 1 :
         answer = 1 % 1234567
     return answer
+    
+    
+    
+    # 내 풀이
+    
+    def solution(n):
+    answer = 0
+    if n == 1:
+        answer = 1 %1234567
+    elif n == 2:
+        answer = 2  % 1234567
+    elif n >= 3:
+        stone = [0]*(n+1)
+        stone[1] = 1
+        stone[2] = 2
+        
+        for i in range(3,n+1):
+            stone[i] = (stone[i-1] + stone[i-2]) % 1234567
+        answer = stone[n]
+        
+    return answer
