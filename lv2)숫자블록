@@ -27,3 +27,26 @@ def solution(begin, end):
         answer.append(k)
     
     return answer
+
+
+#다른풀이
+import math
+def solution(begin, end):
+    answer = []
+    
+    for i in range(begin, end + 1):
+        if i == 1:
+            answer.append(0)
+            continue
+        else:
+            s = int(math.sqrt(i))  # i의 제곱근
+            for j in range(2,s+1):  # 2~~i의 제곱근까지 나눗셈계산
+                m = i // j  # 나눈 몫
+                if m > 10 ** 7:  # 블록번호가 10**7초과면 건너뛰기
+                    continue
+                if i % j == 0:  # 블록번호가 10**7이하이며 나누어 떨어진다면
+                    answer.append(m)  # 정답리스트에 추가
+                    break
+            else:
+                answer.append(1)
+    return answer
