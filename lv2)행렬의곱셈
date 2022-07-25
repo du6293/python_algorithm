@@ -22,3 +22,17 @@ def solution(arr1, arr2):
             res.append(s)
         answer.append(res)
     return answer
+
+
+#추가, 행렬의 덧셈
+
+def solution(arr1, arr2):
+    answer = []
+    for i in range(len(arr1)): #행
+        res = []
+        for j in range(len(arr1[0])):  #열
+            a = arr1[i][j] + arr2[i][j]
+            res.append(a)
+        answer.append(res)    
+    
+    return answer
