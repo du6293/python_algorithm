@@ -20,3 +20,16 @@ def Jaden_Case(s):
     answer = ' '.join(line)
 
     return answer
+
+
+## 방법 3
+
+def solution(s):
+    answer = ''
+    w = list(s.split(' '))  # 공백으로 단어 분리 후 리스트화
+    for i in range(len(w)):
+        w[i] = w[i].capitalize()
+    for i in range(len(w)-1):
+        answer += w[i] + ' '
+    answer += w[-1]
+    return answer
