@@ -1,0 +1,19 @@
+def check(x,y,array):
+    for i in range(x):
+        if (array[i] == y) or (abs(y - array[i]) == x-i)  :
+            return False
+    return True
+
+def queen(x,n,array):
+    if x == n:  # 마지막 행까지 퀸을 놓을 수 있다면 조건에 만족하는 방법이므로 1을 리턴
+        return 1
+    cnt = 0
+    for y in range(n):
+        if check(x,y,array) == True:
+            array[x] = y
+            cnt += queen(x+1,n, array)
+    return cnt
+
+def solution(n):
+    array = [0] * n
+    return queen(0,n,array)
