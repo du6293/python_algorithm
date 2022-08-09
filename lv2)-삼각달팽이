@@ -8,8 +8,8 @@ def solution(n):
     x = -1 # 행
     y = 0  # 열
     num = 1
-    for i in range(n):
-        for j in range(i,n):
+    for i in range(n):   # 방향
+        for j in range(i,n):   # 좌표구하기
             if i % 3 == 0:
                 x += 1
             elif i % 3 == 1:
