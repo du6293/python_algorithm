@@ -1,0 +1,22 @@
+def spliter(arr):
+    size = len(arr) // 2
+    lu = [i[:size] for i in arr[:size]]
+    ru = [i[size:] for i in arr[:size]]
+    lb = [i[:size] for i in arr[size:]]
+    rb = [i[size:] for i in arr[size:]]
+    return lu,ru,lb,rb
+def check(arr):
+    k = len(arr)
+    s = sum(sum(i) for i in arr)
+    if s == k * k:  # 모두 1
+        return [1]
+    elif s == 0:  # 모두 0
+        return[0]
+    else:  # 섞여있다면
+        lu,ru,lb,rb = spliter(arr)
+        return check(lu) + check(ru) + check(lb) + check(rb)
+
+def solution(arr):
+    answer = check(arr)
+    
+    return [len(answer) - sum(answer), sum(answer)]
