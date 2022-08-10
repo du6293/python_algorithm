@@ -1,0 +1,23 @@
+def solution(dirs):
+
+    x,y = 0,0  # 시작점
+    visit = set()
+    dirs = list(dirs)
+    for i in range(len(dirs)):
+        if dirs[i] == 'U' and y < 5:
+            visit.add(((x,y),(x,y+1)))
+            y += 1
+
+        elif dirs[i] == 'D' and y > -5:
+            visit.add(((x,y-1),(x,y)))
+            y -=1
+
+        elif dirs[i] == 'L' and x > -5:
+            visit.add(((x-1,y),(x,y)))
+            x -= 1
+
+        elif dirs[i] =='R' and x < 5:
+            visit.add(((x,y),(x+1,y)))
+            x += 1
+
+    return len(visit)
