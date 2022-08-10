@@ -1,0 +1,26 @@
+# 내 풀이 >> 시간초과 10,11 실패
+
+def check(A):
+    a = bin(A)[2:]  # 주어진 숫자를 이진수 문자열 리스트로 변환
+    B = A+1
+    while True:
+        cnt = 0  # 다른 비트를 세리는 변수
+        b = bin(B)[2:]  # 주어진 숫자보다 큰 숫자를 이진수 문자열 리스트로 변환
+        w = max(len(a),len(b))
+        k = a.rjust(w,'0')
+        p = b.rjust(w,'0')
+        for i in range(len(k)):
+            if k[i] != p[i]:
+                cnt += 1
+        if cnt <= 2:
+            break
+        else:
+            B += 1
+    return B
+    
+        
+def solution(numbers):
+    answer = []
+    for i in range(len(numbers)):
+        answer.append(check(numbers[i]))
+    return answer
