@@ -1,0 +1,41 @@
+def solution(s):
+    answer = []
+    s = s.replace('{','[')
+    s = s.replace('}',']')
+    w = list(s)
+    w.pop(-1)
+    w.pop(0)
+    w = ''.join(w)  # "[20,111],[111]"
+    array = []
+    tmp = ''
+    for i in w:
+        if i == '[':
+            continue
+        elif i == ']':
+            array.append(tmp)
+            tmp = ''
+            
+        elif i ==',':
+            if len(tmp) == 0:
+                continue
+            elif len(tmp) > 0:
+                tmp += i        
+        else:
+            tmp += i
+            
+            
+    word = []
+    for i in range(len(array)):
+        
+        word.append(array[i].split(','))
+        
+    res =[]
+    for i in range(len(word)):
+        res.append([word[i],len(word[i])])
+    res.sort(key = lambda x: x[1])
+    for i in range(len(res)):
+        for j in range(len(res[i][0])):
+            if res[i][0][j] not in answer:
+                answer.append(res[i][0][j])
+    answer = [int(i) for i in answer]
+    return answer
