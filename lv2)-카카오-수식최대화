@@ -1,4 +1,5 @@
 ## 개개개개개 어려워서 답 봄
+# 방법 1 
 
 from itertools import permutations
 def calc(priority, n, expression):
@@ -22,6 +23,52 @@ def solution(expression):
 
     return answer
     
-  # 하다가 그만둔 코드
-  
-  
+    
+    
+    
+    
+    
+    
+    
+# 방법 2   
+# 진짜 괜찮은 코드
+
+from itertools import permutations
+def operation(num1,num2,op):   # 연산 함수
+    if op == '+':
+        return str(int(num1) + int(num2))
+    if op == '*':
+        return str(int(num1) * int(num2))
+    if op == '-':
+        return str(int(num1) - int(num2))
+
+def calculate(exp,op):  # exp : 문제에서 준 표현식문자열, op : ['+', '-', '*']
+    array = []
+    tmp = ''
+    for i in exp:
+        if i.isdigit() == True:  # 한 문자가 숫자라면
+            tmp += i  # 변수에 문자열 더하기
+        else:  # 한 문자가 숫자가 아니라면 > 연산자라면
+            array.append(tmp) # 그동안 저장했던 숫자로 된 문자열 배열에 저장
+            array.append(i)  # 연산자로 된 문자열 배열에 저장
+            tmp = ''   # 변수 초기화
+    array.append(tmp)
+    
+    for k in op:  # ['+', '-', '*'] 에서
+        stack = []  # 숫자로 된 문자열만 넣을 거임
+        while len(array) != 0:  # array 길이가 양수일때
+            a = array.pop(0)  # 첫번째 원소 뽑음
+            if a == k:  # 연산자로 된 문자열이라면
+                stack.append(operation(stack.pop(), array.pop(0), a))  # stack 마지막원소와 array에서 하나를 더 뽑아 연산
+            else:       # 숫자로 된 문자열 이라면 >> 맨 첫번째 숫자로 된 문자열일 때에 대비
+                stack.append(a) # stack에 저장
+        array = stack
+    return abs(int(array[0]))
+
+def solution(expression):
+    answer = []
+    operation = ['+', '-', '*']
+    oper = list(permutations(operation,3))
+    for i in oper:
+        answer.append(calculate(expression,i))
+    return max(answer)
