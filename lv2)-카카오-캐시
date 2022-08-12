@@ -1,0 +1,32 @@
+## 기본용어만 알면 쉬운문제
+
+
+
+def solution(cacheSize, cities):
+    answer = 0
+    # LRU(Last Recently Used): 가장 오랫동안 참조되지 않은 페이지를 교체
+    # cache hit : 참조하고자하는 메모리가 캐시에 존재하는 경우 + 1
+    # chache miss : 참조하고자하는 메모리가 캐시에 존재하지 않는 경우 + 5
+    
+    city = [cities[i].lower() for i in range(len(cities))]
+    cache = []
+    time = 0
+    
+    없어도 무방한 코드
+    #if cacheSize == 0:
+    #    return len(city) * 5
+    
+    for i in range(len(city)):
+        if city[i] not in cache:  # cache miss, 처음 들어온 것
+            cache.append(city[i])
+            if len(cache) > cacheSize:
+                cache.pop(0)
+                time += 5
+            else:
+                time += 5
+                continue
+        elif city[i] in cache:  # cache hit, 이미 메모리에 존재
+            time += 1
+            cache.pop(cache.index(city[i]))  # 이미 있던 것 뽑아내고
+            cache.append(city[i])  # 새로운 거 맨 위에 넣기
+    return time
