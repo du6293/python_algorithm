@@ -1,0 +1,70 @@
+## 다른 풀이
+def solution(m, musicinfos):
+    answer = []
+    m = m.replace('A#', 'H').replace('C#', 'I').replace('D#', 'J').replace('F#', 'K').replace('G#', 'L')
+
+    for musicinfo in musicinfos:
+        musicinfo = musicinfo.split(',')
+        musicinfo[3] = musicinfo[3].replace('A#', 'H').replace('C#', 'I').replace('D#', 'J').replace('F#', 'K').replace(
+            'G#', 'L')
+
+        time = (int(musicinfo[1].split(':')[0]) * 60 + int(musicinfo[1].split(':')[1])) - (
+                    int(musicinfo[0].split(':')[0]) * 60 + int(musicinfo[0].split(':')[1]))
+
+        music = ''.join(musicinfo[3] * (time // len(musicinfo[3])) + musicinfo[3][:time % len(musicinfo[3])])
+
+        if m in music:
+            answer.append((time, musicinfo[2]))
+
+    if len(answer) > 0:
+        answer.sort(key=lambda x: -x[0])
+        return answer[0][1]
+
+    return "(None)"
+
+
+# 내 풀이
+## 재생시간 계산
+def clock(sequence):  # sequence >> 리스트통째
+    time = 0
+    a = [int(sequence[0][0:2]),int(sequence[0][3:5])]  #이전시간 시,분
+    b = [int(sequence[1][0:2]),int(sequence[1][3:5])]  #이후시간 시,분
+    if b[1] >= a[1]:
+        time += b[1] - a[1]
+        time += (b[0] - a[0]) * 60
+    elif b[1] < a[1]:
+        time += (b[1] + 60 - a[1])
+        time += ((b[0] - 1) - a[0]) * 60
+    return time
+
+# 곡 나누기
+def music(s):  # 문자열 매개변수 
+    s = s.replace('C#', 'c').replace('D#', 'd').replace('F#', 'f').replace('G#', 'g').replace('A#', 'a')
+    return s  # 문자열 형태로 반환
+
+def solution(m, musicinfos):# 기억한 멜로디, [시작시각, 끝난시각, 제목, 악보정보] >> 찾으려는 음악제목 구하기
+    answer = []
+    info = []
+    m = music(m)
+    for i in range(len(musicinfos)):
+        info.append(musicinfos[i].split(','))
+    
+    for i in range(len(info)):
+        k = music(info[i][3])
+        info[i].append(i)
+        if clock(info[i]) >= len(k):
+            a = clock(info[i]) //len(k)  # 사이클
+            b = clock(info[i]) % len(k)  # 나머지
+            newm = k*a+k[:b]
+            if m in newm:
+                answer.append(info[i])
+        elif clock(info[i]) < len(k):
+            if m in k:
+                answer.append(info[i])
+    if len(answer) == 0:
+        return '(None)'
+    elif len(answer) == 1:
+        return answer[0][2]
+    elif len(answer) > 1:
+        answer.sort(key = lambda x : (-clock(x),x[4]))
+        return answer[0][2]
