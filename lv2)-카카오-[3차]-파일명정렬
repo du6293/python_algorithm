@@ -1,0 +1,54 @@
+## 다른사람 풀이
+def solution(files):
+    answer = []
+    for f in files:
+        head, number, tail = '', '', ''
+
+        number_check = False
+        for i in range(len(f)): # 문자열 자르기
+            if f[i].isdigit():  # 처음 나오는 숫자부터는 NUMBER로
+                number += f[i]
+                number_check = True
+            elif not number_check:  # NUMBER가 나오기 전까지는 HEAD
+                head += f[i]
+            else:               # NUMBER가 이미 나왔고, 숫자가 아닌 문자가 나오면 TAIL
+                tail = f[i:]
+                break
+        answer.append((head, number, tail))  # HEAD, NUMBER, TAIL 하나의 튜플로 저장
+
+    answer.sort(key=lambda x: (x[0].upper(), int(x[1])))  # HEAD 우선, NUMBER 차선으로 정렬
+
+    return [''.join(t) for t in answer]   # 원래 형태로 문자열 만들어서 반환
+
+## 내 풀이
+
+def part(sequence):
+
+    s,e = 0,0
+    p = []
+    for i in range(len(sequence)-1):
+        if sequence[i].isnumeric() == False and sequence[i+1].isnumeric() == True:
+            s = i+1  # number 시작 인덱스
+            break
+
+    for i in range(s,len(sequence)-1):  ## 숫자-문자
+        if sequence[i].isnumeric() == True and sequence[i+1].isnumeric() == False and 0<= (i-s) <5:
+            e = i  # number 끝 인덱스
+            break
+    if e < s:
+        e = len(sequence)-1
+
+    h = sequence[:s]
+    n = sequence[s:e+1]
+    t = sequence[e+1:]
+    return [h,n,t]
+
+def solution(files):
+    answer = []
+    file = []
+    for i in range(len(files)):
+        file.append(part(files[i]))
+    file.sort(key = lambda x: (x[0].lower(),int(x[1])))
+    for i in range(len(file)):
+        answer.append(''.join(file[i]))
+    return answer
