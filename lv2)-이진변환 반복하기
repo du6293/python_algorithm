@@ -1,29 +1,20 @@
 ## 내가 풀었다~~~유후
-def transform(s):
-    s = list(s)
-    a=0
-    w = []  # 모든 0을 제거
-    for i in range(len(s)):
-        if s[i] == '1':
-            w.append(s[i])
-        else:
-            a += 1
-    # 0제거한 후 길이를 이진볍으로 표현한 문자열로 표현
-    c = len(w)
-    k = bin(c)[2:]
-    return [k,a]
-    
+def transform(se):
+    c = 0
+    se = list(se)
+    for i in range(len(se)):
+        if se[i] == '0':
+            c += 1
+    see = bin(len(se) - c)[2:]
+    return see,c  # 문자열, 바뀐 0의 갯수
+
 def solution(s):
     answer = []
-    cnt = 0  #제거된 0의 갯수
-    bnt = 0  # 이진 변환 횟수
-    if s == '1':
-        answer = [0,0]  
-    elif s != '1':
-        while s != '1':
-            t = transform(s)[0]
-            bnt += 1
-            cnt+=transform(s)[1]
-            s = t
-        answer = [bnt,cnt]
-    return answer  # 이진변환 횟수, 제거된 모든 0의 갯수
+    cnt = 0
+    tmp = 0
+    while s != '1':
+        transform(s)
+        tmp += 1
+        cnt += transform(s)[1]
+        s = transform(s)[0]
+    return [tmp,cnt]
