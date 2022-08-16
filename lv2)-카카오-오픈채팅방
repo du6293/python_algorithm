@@ -2,23 +2,17 @@ def solution(record):
     answer = []
     rec = []
     for sentence in record:
-
         new_sentence = sentence.split(' ')
         rec.append(new_sentence)
-
 
     dict = {}
     for i in range(len(rec)):
         if rec[i][0] == 'Enter' or rec[i][0] == 'Change':
             dict[rec[i][1]] = rec[i][2]
 
-
-
-
     answer = []
     for i in range(len(rec)):
         if rec[i][0] == 'Enter':
-
             answer.append('{}님이 들어왔습니다.'.format(dict[rec[i][1]]))
         elif rec[i][0] == 'Leave':
             answer.append('{}님이 나갔습니다.'.format(dict[rec[i][1]]))
