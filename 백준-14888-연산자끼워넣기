@@ -1,0 +1,34 @@
+from itertools import permutations
+n = int(input())
+s = list(map(int,input().split()))
+op = list(map(int,input().split()))
+oper = ''
+oper+= '+' * op[0] + '-' * op[1] + '*' * op[2] + '/' * op[3]
+oper = list(oper)
+exp = list(set(list(permutations(oper,len(oper)))))
+
+res = []
+
+for i in range(len(exp)):
+    m = s[0]
+    for j in range(1,len(s)):  #  4 5
+        if exp[i][j-1] == '+':
+            m += s[j]
+        elif exp[i][j-1] == '-':
+            m -= s[j]
+        elif exp[i][j-1] == '*':
+            m *= s[j]
+        elif exp[i][j-1] == '/':
+            if m < 0 and s[j]> 0:  # 통
+                m = (m * (-1) // s[j])*(-1)
+            elif m >= 0 and s[j] > 0:  # 통
+                m //= s[j]
+            elif m < 0 and s[j] < 0:
+                m //= s[j]
+            elif m >= 0 and s[j] < 0:
+                m  = ( m * (-1)// s[j]) * (-1)
+
+    res.append(m)
+
+print(max(res))
+print(min(res))
