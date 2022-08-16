@@ -1,3 +1,42 @@
+## 내풀이
+# 테두리 회전
+def rotate(graph, s):
+    x1,y1,x2,y2 = s[0],s[1],s[2],s[3]
+    u,b = graph[x1-1][y1-1:y2-1],graph[x2-1][y1:y2]
+    l,r = [],[]
+    for i in range(x1,x2):
+        l.append(graph[i][y1-1])
+    for i in range(x1-1,x2-1):
+        r.append(graph[i][y2-1])
+    # 배열 갱신
+    graph[x1-1][y1:y2] = u
+    graph[x2-1][y1-1:y2-1] = b
+    for i in range(len(l)):
+        # x1-1~x2-1
+        graph[x1-1+i][y1-1] = l[i]
+    for i in range(len(r)):  # x1~x2
+        graph[x1+i][y2-1] = r[i]
+    
+    # 새로운 graph에서 최솟값 찾기 
+    nl,nr = [],[]
+    for i in range(x1,x2):
+        nl.append(graph[i][y1-1])
+    for i in range(x1-1,x2-1):
+        nr.append(graph[i][y2-1])
+    n = graph[x1-1][y1-1:y2-1]+graph[x2-1][y1:y2]+nl+nr
+    return min(n)
+
+def solution(rows, columns, queries):
+    answer = []
+    board = [[i+columns*j for i in range(1,columns+1)] for j in range(0,rows)]
+    for i in range(len(queries)):
+        answer.append(rotate(board,queries[i]))
+    return answer
+
+
+
+
+
 from copy import copy
 
 def solution(rows, columns, queries):
