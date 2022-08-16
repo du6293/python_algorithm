@@ -1,0 +1,37 @@
+def solution(grid):
+    answer = []
+        #     ↓  ←   ↑  →
+    dx = (1, 0, -1, 0)  # 행
+    dy = (0, -1, 0, 1)  # 열
+    r, c = len(grid), len(grid[0])  # 행, 열
+    visited = [[[False] * 4 for _ in range(c)] for _ in range(r)]
+
+    for x in range(r):
+        for y in range(c):
+
+            # (y, x) 좌표에 대해 4방향 탐색
+            for d in range(4):
+                # 해당 좌표-방향 이 기존에 사용된 경우
+                if visited[x][y][d]:
+                    continue
+
+                # 사용되지 않은 좌표-방향인 경우
+                count = 0
+                nx, ny = x,y
+                # 빛을 이동 시켜가며 탐색
+                while not visited[nx][ny][d]:
+                    visited[nx][ny][d] = True
+                    count += 1
+                    if grid[nx][ny] == "S": # S의 경우 방향 변경 X
+                        pass
+                    elif grid[nx][ny] == "L": # L의 경우 반시계방향
+                        d = (d - 1) % 4
+                    elif grid[nx][ny] == "R": # R의 경우 시계방향
+                        d = (d + 1) % 4
+
+                    # 좌표의 길이로 %연산을 하여 격자를 벗어난 경우에도 자리를 찾아가도록함.
+                    nx = (nx + dx[d]) % r
+                    ny = (ny + dy[d]) % c 
+                answer.append(count)
+    answer = sorted(answer) # 오름차순 정렬
+    return answer
