@@ -1,0 +1,33 @@
+from collections import deque
+import sys
+n = int(input())  # 컴퓨터 대수  7 
+m = int(input())  # 컴퓨터 연결수  6
+
+computers = []
+for _ in range(m):
+    a,b = list(map(int,input().split()))
+    computers.append([a,b])
+
+visit = [False] * (n+1)
+
+adj = [[] for _ in range(n+1)]
+
+for a,b in computers:
+    adj[a].append(b)
+    adj[b].append(a)
+
+visit[1] = True
+queue = deque()
+queue.append(1)
+while queue:
+    x = queue.popleft()
+    for next in adj[x]:
+        if visit[next] == False:
+            visit[next] = visit[x] + 1
+            queue.append(next)
+
+cnt = 0
+for i in range(len(visit)):
+    if visit[i] != False and visit[i] != True:
+        cnt += 1
+print(cnt)
