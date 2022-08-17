@@ -35,4 +35,4 @@ for i in range(len(a)):
         answer[stack.pop()] = a[i]
     stack.append(i)
   
-print(answer)
+print(*answer)
