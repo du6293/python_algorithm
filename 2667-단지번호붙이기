@@ -5,7 +5,7 @@ def bfs(maps,a,b):
     n = len(maps)
     queue = deque()
     queue.append([a,b])
-    maps[a][b] = 0
+    maps[a][b] = 0  # 면적계산을 위해 0으로 바꿈
     count = 1
 
     while queue:
