@@ -1,0 +1,20 @@
+from collections import deque
+
+n,k = map(int,input().split()) # 시작점 , 도착점
+m = 10 ** 5
+visited = [False] * (m+1)
+time = 0
+queue=deque()
+queue.append(n)
+##시작지점을 한번 또 지나갈 수 있으므로 방문표시 하지 않음
+while queue:
+    x = queue.popleft()
+    if x == k:
+        print(visited[x])
+        break
+    for i in (x-1,x+1,x*2):
+        if 0<= i< m and visited[i] == False:
+            visited[i] = visited[x] + 1
+            queue.append(i)
+                
+print(visited[0:20])
