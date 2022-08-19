@@ -1,0 +1,40 @@
+from collections import deque
+
+m,n = map(int,input().split()) # 열,행 
+
+maps = []
+for _ in range(n):
+    line = list(map(int, input().split()))
+    maps.append(line)
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+queue = deque()
+for i in range(n):  # 행
+    for j in range(m):  # 열
+        if maps[i][j] == 1 :
+            queue.append([i,j])
+
+def bfs():
+
+    while queue:
+        
+        x,y = queue.popleft()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx <n and 0 <= ny < m and maps[nx][ny] == 0:  # 안익은 토마토
+                    maps[nx][ny] = maps[x][y] + 1
+                    queue.append([nx,ny])
+
+bfs()          
+c=  0
+p = 0
+for i in range(n):
+    for j in range(m):
+        if maps[i][j] == 0:
+            c += 1
+    p = max(p,max(maps[i]))
+if c > 0:
+    print(-1)
+elif c == 0 :
+    print(p-1)
